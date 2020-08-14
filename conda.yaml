@@ -5,7 +5,7 @@ dependencies:
   - numpy>=1.14.3
   - pandas>=1.0.0
   - scikit-learn=0.19.1
-  - trains>=0.15.1
   - pip
   - pip:
     - mlflow
+    - trains==0.15.1
