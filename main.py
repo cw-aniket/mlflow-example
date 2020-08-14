@@ -11,7 +11,7 @@ import numpy as np
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import ElasticNet
-
+import trains
 import mlflow
 import mlflow.sklearn
 
@@ -43,6 +43,10 @@ if __name__ == "__main__":
 
     alpha = float(sys.argv[1]) if len(sys.argv) > 1 else 0.5
     l1_ratio = float(sys.argv[2]) if len(sys.argv) > 2 else 0.5
+    
+    mlflow.set_tracking_uri("http://localhost:5000/")
+    mlflow.set_experiment("mlflow-projects")
+    
     with mlflow.start_run():
         lr = ElasticNet(alpha=alpha, l1_ratio=l1_ratio, random_state=42)
         lr.fit(train_x, train_y)
