@@ -66,6 +66,6 @@ if __name__ == "__main__":
 
         mlflow.sklearn.log_model(lr, "model")
         df = pd.DataFrame(data={'col1': [1, 2], 'col2': [3, 4]})
-        df.to_csv("../Artifacts/data.csv")
-        mlflow.log_artifacts("../Artifacts")
+        df.to_csv("Artifacts/data.csv")
+        mlflow.log_artifacts("Artifacts")
         print(" Completed")
