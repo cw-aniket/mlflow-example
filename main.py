@@ -44,7 +44,6 @@ if __name__ == "__main__":
     alpha = float(sys.argv[1]) if len(sys.argv) > 1 else 0.5
     l1_ratio = float(sys.argv[2]) if len(sys.argv) > 2 else 0.5
     print("Mlflow.tracking.get_tracking_uri: %s" % mlflow.tracking.get_tracking_uri())
-    mlflow.set_experiment("New Experiment")
     with mlflow.start_run():
         lr = ElasticNet(alpha=alpha, l1_ratio=l1_ratio, random_state=42)
         lr.fit(train_x, train_y)
@@ -66,4 +65,7 @@ if __name__ == "__main__":
         mlflow.log_metric("mae", mae)
 
         mlflow.sklearn.log_model(lr, "model")
+        df = pd.DataFrame(data={'col1': [1, 2], 'col2': [3, 4]})
+        df.to_csv("../Artifacts/data.csv")
+        mlflow.log_artifacts("../Artifacts")
         print(" Completed")
