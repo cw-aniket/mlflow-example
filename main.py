@@ -11,7 +11,6 @@ import numpy as np
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import ElasticNet
-import trains
 import mlflow
 import mlflow.sklearn
 
@@ -66,6 +65,6 @@ if __name__ == "__main__":
 
         mlflow.sklearn.log_model(lr, "model")
         df = pd.DataFrame(data={'col1': [1, 2], 'col2': [3, 4]})
-        df.to_csv("Artifacts/data.csv")
+        df.to_csv("file://home/aniketwalse/work/mlflow-example/Artifacts/data.csv")
         mlflow.log_artifacts("Artifacts")
         print(" Completed")
