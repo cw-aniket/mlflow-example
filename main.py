@@ -13,6 +13,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import ElasticNet
 import mlflow
 import mlflow.sklearn
+import tempfile
 
 
 def eval_metrics(actual, pred):
@@ -65,6 +66,8 @@ if __name__ == "__main__":
 
         mlflow.sklearn.log_model(lr, "model")
         df = pd.DataFrame(data={'col1': [1, 2], 'col2': [3, 4]})
-        df.to_csv("file://home/aniketwalse/work/mlflow-example/Artifacts/data.csv")
-        mlflow.log_artifacts("Artifacts")
+        tmpdir = tempfile.mkdtemp()
+        ratings_parquet_dir = os.path.join(tmpdir, "Artifacts")
+        df.to_csv(ratings_parquet_dir+"/data.csv")
+        mlflow.log_artifacts(ratings_parquet_dir)
         print(" Completed")
